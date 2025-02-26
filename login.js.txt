@@ -1,0 +1,55 @@
+const express = require("express");
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const cors = require("cors");
+
+const app = express();
+app.use(express.json());
+app.use(cors());
+
+const JWT_SECRET = "geheimes_passwort";
+
+// MongoDB verbinden
+mongoose.connect("mongodb://localhost:27017/usersDB", { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Benutzer-Schema
+const UserSchema = new mongoose.Schema({
+    username: String,
+    password: String
+});
+const User = mongoose.model("User", UserSchema);
+
+// Registrierung
+app.post("/register", async (req, res) => {
+    const { username, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    
+    try {
+        await User.create({ username, password: hashedPassword });
+        res.status(201).json({ message: "Benutzer erfolgreich registriert" });
+    } catch (err) {
+        res.status(500).json({ error: "Fehler bei der Registrierung" });
+    }
+});
+
+// Login
+app.post("/login", async (req, res) => {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
+
+    if (!user) {
+        return res.status(401).json({ error: "Benutzer nicht gefunden" });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+        return res.status(401).json({ error: "Falsches Passwort" });
+    }
+
+    const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: "1h" });
+    res.json({ token });
+});
+
+// Server starten
+app.listen(5000, () => console.log("Server läuft auf Port 5000"));

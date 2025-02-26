@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Sun Spirits & Tobacco</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Willkommen bei Black Sun Spirits & Tobacco</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Startseite</a></li>
+                <li><a href="#products">Produkte</a></li>
+                <li><a href="#about">Über uns</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+                <li><a href="#login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="products">
+            <h2>Produkte</h2>
+            <div class="product">
+                <h3>Whiskey</h3>
+                <img src="whiskey.jpg" alt="Whiskey">
+                <p>Preis: <span class="price">20,00 €</span></p>
+                <button class="buy" onclick="openPaymentModal()">Jetzt kaufen</button>
+            </div>
+        </section>
+
+        <section id="login">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="username">Benutzername:</label>
+                <input type="text" id="username" required>
+                <label for="password">Passwort:</label>
+                <input type="password" id="password" required>
+                <button type="submit">Einloggen</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Zahlungsmodal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <h2>Zahlungsmethode wählen</h2>
+            <button onclick="payWithCard()">Kreditkarte</button>
+            <button onclick="payWithPayPal()">PayPal</button>
+            <button onclick="payWithCrypto()">Litecoin</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

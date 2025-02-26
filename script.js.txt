@@ -1,0 +1,24 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.getElementById("loginForm");
+    const contactForm = document.getElementById("contactForm");
+
+    // Login-Formularverarbeitung
+    loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Hier kannst du die Logik zur Benutzeranmeldung hinzufügen
+        alert(`Willkommen, ${username}!`);
+    });
+
+    // Kontaktformularverarbeitung
+    contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+
+        // Hier kannst du die Logik zum Senden des Kontaktformulars hinzufügen
+        alert(`Vielen Dank für Ihre Nachricht, ${name}!`);
+    });
+});
