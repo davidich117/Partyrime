@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabak und Sprit GmbH</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        section {
+            padding: 20px;
+        }
+        .form-container {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tabak und Sprit GmbH</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#produkte">Produkte</a></li>
+                <li><a href="#angebote">Angebote</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+                <li><a href="#login">Login</a></li>
+                <li><a href="#register">Registrieren</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <h2>Willkommen bei Tabak und Sprit GmbH!</h2>
+            <p>Entdecken Sie unsere Auswahl an hochwertigen Spirituosen und Tabakwaren.</p>
+        </section>
+        <section id="register">
+            <h2>Registrierung</h2>
+            <div class="form-container">
+                <form id="registerForm">
+                    <input type="text" id="name" placeholder="Name" required>
+                    <input type="email" id="email" placeholder="E-Mail" required>
+                    <input type="password" id="password" placeholder="Passwort" required>
+                    <button type="submit">Registrieren</button>
+                </form>
+                <p id="registerMessage"></p>
+            </div>
+        </section>
+        <section id="login">
+            <h2>Login</h2>
+            <div class="form-container">
+                <form id="loginForm">
+                    <input type="email" id="loginEmail" placeholder="E-Mail" required>
+                    <input type="password" id="loginPassword" placeholder="Passwort" required>
+                    <button type="submit">Einloggen</button>
+                </form>
+                <p id="loginMessage"></p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Tabak und Sprit GmbH. Alle Rechte vorbehalten.</p>
+    </footer>
+    
+    <script>
+        // Registrierung
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            
+            if (localStorage.getItem(email)) {
+                document.getElementById("registerMessage").textContent = "E-Mail bereits registriert!";
+            } else {
+                localStorage.setItem(email, JSON.stringify({ name, password }));
+                document.getElementById("registerMessage").textContent = "Registrierung erfolgreich!";
+            }
+        });
+
+        // Login
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let email = document.getElementById("loginEmail").value;
+            let password = document.getElementById("loginPassword").value;
+            let userData = JSON.parse(localStorage.getItem(email));
+
+            if (userData && userData.password === password) {
+                document.getElementById("loginMessage").textContent = "Login erfolgreich!";
+            } else {
+                document.getElementById("loginMessage").textContent = "Falsche E-Mail oder Passwort!";
+            }
+        });
+    </script>
+</body>
+</html>
