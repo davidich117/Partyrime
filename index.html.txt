@@ -63,6 +63,7 @@
                 <li><a href="#angebote">Angebote</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
                 <li><a href="#login">Login</a></li>
+                <li><a href="#register">Registrierung</a></li>
             </ul>
         </nav>
     </header>
@@ -75,22 +76,22 @@
             <h2>Sonderangebote</h2>
             <div class="produkt-karten">
                 <div class="produkt">
-                    <img src="https://placehold.co/150" alt="Produkt 1">
+                    <img src="https://via.placeholder.com/150" alt="Produkt 1">
                     <h3>Produkt 1</h3>
                     <p>Preis: €19,99</p>
-                    <button>In den Warenkorb</button>
+                    <button onclick="addToCart('Produkt 1')">In den Warenkorb</button>
                 </div>
                 <div class="produkt">
-                    <img src="https://placehold.co/150" alt="Produkt 2">
+                    <img src="https://via.placeholder.com/150" alt="Produkt 2">
                     <h3>Produkt 2</h3>
                     <p>Preis: €24,99</p>
-                    <button>In den Warenkorb</button>
+                    <button onclick="addToCart('Produkt 2')">In den Warenkorb</button>
                 </div>
                 <div class="produkt">
-                    <img src="https://placehold.co/150" alt="Produkt 3">
+                    <img src="https://via.placeholder.com/150" alt="Produkt 3">
                     <h3>Produkt 3</h3>
                     <p>Preis: €15,99</p>
-                    <button>In den Warenkorb</button>
+                    <button onclick="addToCart('Produkt 3')">In den Warenkorb</button>
                 </div>
             </div>
         </section>
@@ -98,22 +99,22 @@
             <h2>Produkte</h2>
             <div class="produkt-karten">
                 <div class="produkt">
-                    <img src="https://placehold.co/150" alt="Produkt 4">
+                    <img src="https://via.placeholder.com/150" alt="Produkt 4">
                     <h3>Produkt 4</h3>
                     <p>Preis: €29,99</p>
-                    <button>In den Warenkorb</button>
+                    <button onclick="addToCart('Produkt 4')">In den Warenkorb</button>
                 </div>
                 <div class="produkt">
-                    <img src="https://placehold.co/150" alt="Produkt 5">
+                    <img src="https://via.placeholder.com/150" alt="Produkt 5">
                     <h3>Produkt 5</h3>
                     <p>Preis: €34,99</p>
-                    <button>In den Warenkorb</button>
+                    <button onclick="addToCart('Produkt 5')">In den Warenkorb</button>
                 </div>
                 <div class="produkt">
-                    <img src="https://placehold.co/150" alt="Produkt 6">
+                    <img src="https://via.placeholder.com/150" alt="Produkt 6">
                     <h3>Produkt 6</h3>
                     <p>Preis: €21,99</p>
-                    <button>In den Warenkorb</button>
+                    <button onclick="addToCart('Produkt 6')">In den Warenkorb</button>
                 </div>
             </div>
         </section>
@@ -127,9 +128,24 @@
                 <button type="submit">Einloggen</button>
             </form>
         </section>
+        <section id="register">
+            <h2>Benutzer-Registrierung</h2>
+            <form>
+                <label for="reg-username">Benutzername:</label>
+                <input type="text" id="reg-username" name="reg-username" required>
+                <label for="reg-password">Passwort:</label>
+                <input type="password" id="reg-password" name="reg-password" required>
+                <button type="submit">Registrieren</button>
+            </form>
+        </section>
     </main>
     <footer>
         <p>&copy; 2025 Black Sun Casino. Alle Rechte vorbehalten.</p>
     </footer>
+    <script>
+        function addToCart(product) {
+            alert(product + ' wurde zum Warenkorb hinzugefügt!');
+        }
+    </script>
 </body>
 </html>
